@@ -51,6 +51,15 @@ def select():
     
     return response_string
 
+@app.route('/db_drop')
+def drop():
+    conn = psycopg2.connect("postgres://lab10_wo7m_user:mX4rlb5gfIozk7AJO55lmpYWrZRBwcnN@dpg-co1g20a1hbls738fog90-a/lab10_wo7m") 
+    cur = conn.cursor()
+    cur.execute('''DROP TABLE Basketball; ''')
+    conn.commit()
+    conn.close()
+    return "Basketball table successfully dropped"
+
 @app.route('/')
 def hello_world():
     return 'Hello, World from Hallee Ray in 3308!'
