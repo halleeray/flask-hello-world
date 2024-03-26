@@ -18,6 +18,30 @@ def create():
     conn.close()
     return "Basketball table successfully created"
 
+@app.route('/db_insert')
+def insert():
+    conn = psycopg2.connect("postgres://lab10_wo7m_user:mX4rlb5gfIozk7AJO55lmpYWrZRBwcnN@dpg-co1g20a1hbls738fog90-a/lab10_wo7m") 
+    cur = conn.cursor()
+    cur.execute('''INSERT INTO Basketball (First, Last, City, Name, Number)
+Values
+('Jayson', 'Tatum', 'Boston', 'Celtics', 0),
+('Stephen', 'Curry', 'San Francisco', 'Warriors', 30),
+('Nikola', 'Jokic', 'Denver', 'Nuggets', 15),
+('Kawhi', 'Leonard', 'Los Angeles', 'Clippers', 2); ''')
+    conn.commit()
+    conn.close()
+    return "Basketball table populated"
+
+@app.route('/db_select')
+def select():
+    conn = psycopg2.connect("postgres://lab10_wo7m_user:mX4rlb5gfIozk7AJO55lmpYWrZRBwcnN@dpg-co1g20a1hbls738fog90-a/lab10_wo7m") 
+    cur = conn.cursor()
+    cur.execute("SELECT * FROM Basketball;")
+    records = cur.fetchall()
+    conn.commit()
+    conn.close()
+    return "Basketball table populated"
+
 @app.route('/')
 def hello_world():
     return 'Hello, World from Hallee Ray in 3308!'
