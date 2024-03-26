@@ -4,8 +4,8 @@ app = Flask(__name__)
 import psycopg2
 
 @app.route('/db_test')
-def db_test():
-    conn = psycopg2.connect("postgres://lab10_sf5i_user:1SS5isBvW8EITDxpvIgXJHNmmgX4LxMK@dpg-co1fh7021fec73d252kg-a/lab10_sf5i") 
+def testing():
+    conn = psycopg2.connect("postgres://lab10_wo7m_user:mX4rlb5gfIozk7AJO55lmpYWrZRBwcnN@dpg-co1g20a1hbls738fog90-a/lab10_wo7m") 
     conn.close()
     return "Database Connection Successful"
 
