@@ -38,9 +38,18 @@ def select():
     cur = conn.cursor()
     cur.execute("SELECT * FROM Basketball;")
     records = cur.fetchall()
-    conn.commit()
     conn.close()
-    return "Basketball table populated"
+    response_string = ""
+    response_string += "<table>"
+    
+    for player in records:
+        response_string += "<tr>"
+        for info in player:
+            response_string += "<td>{}</td>".format(info)
+        response_string += "</tr>"
+    response_string += "</table>"
+    
+    return response_string
 
 @app.route('/')
 def hello_world():
